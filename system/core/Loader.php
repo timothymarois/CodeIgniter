@@ -231,7 +231,7 @@ class CI_Loader {
 	 * @param	bool	$db_conn	An optional database connection configuration to initialize
 	 * @return	object
 	 */
-	public function model($model, $name = '', $db_conn = FALSE, $params = array())
+	public function model($model, $name = '', $db_conn = FALSE)
 	{
 		if (empty($model))
 		{
@@ -302,12 +302,7 @@ class CI_Loader {
 			require_once($mod_path.'models/'.$path.$model.'.php');
 
 			$this->_ci_models[] = $name;
-			if (isset($params) && !empty($params)) {
-				$CI->$name = new $model($params);
-			}
-			else {
-				$CI->$name = new $model();
-			} 
+			$CI->$name = new $model();
 			return $this;
 		}
 
